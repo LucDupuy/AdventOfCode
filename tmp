@@ -1,0 +1,115 @@
+def check_surrounding(digit, line):
+    for col_idx, char in enumerate(line):
+        if char.isdigit() and char == digit:
+            left         = buffered_list[row_idx][col_idx-1]
+            right        = buffered_list[row_idx][col_idx+1]
+            top          = buffered_list[row_idx-1][col_idx]
+            bottom       = buffered_list[row_idx+1][col_idx]
+            top_left     = buffered_list[row_idx-1][col_idx-1]
+            top_right    = buffered_list[row_idx-1][col_idx+1]
+            bottom_left  = buffered_list[row_idx+1][col_idx-1]
+            bottom_right = buffered_list[row_idx+1][col_idx+1]
+
+
+
+
+import re
+file = open("input.txt", 'r')
+list = file.read().splitlines()
+
+symbols_list = '@#$%&*+=-_/'
+
+length = len(list) + 2
+buffer_str = "." * length
+
+buffered_list = []
+
+for line in list:
+    new_line = "." + line + "."
+    buffered_list.append(new_line)
+
+buffered_list.append(buffer_str)
+buffered_list.insert(0, buffer_str)
+
+nums_in_row = []
+
+for row_idx, line in enumerate(buffered_list):
+    nums_in_row.append(re.findall(r'[0-9]+', line))
+
+    
+for row_idx, row in enumerate(nums_in_row):
+    
+    if (len(row) == 0):
+        continue
+    
+    print(row, buffered_list[row_idx])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#####DAY 4 PT2
+
+file = open("input.txt", 'r')
+list = file.read().splitlines()
+
+#(card number, number of winning numbers)
+total_winning_nums_list = []
+
+
+duplicates_list = []
+
+sum = 0
+for card_idx, card in enumerate(list):
+
+    card = card.split(':', 1)[-1]
+    
+    winning_nums = card.split('|')[0]
+    my_nums = card.split('|')[1]
+    
+    winning_nums = winning_nums.split(' ')
+    winning_nums = [x for x in winning_nums if x != ""]
+
+    my_nums = my_nums.split(' ')
+    my_nums = [x for x in my_nums if x != ""]
+
+    total_winning_nums = len(set(my_nums).intersection(winning_nums))
+    total_winning_nums_list.append((card_idx, total_winning_nums))
+
+
+
+for pairing in total_winning_nums_list:
+    
+    card_idx, winning_nums_total = pairing[0], pairing[1]
+
+    
+    # if winning_nums_total == 0:
+    #     continue
+
+    
+
+    for i in range(winning_nums_total):
+        
+        
+        list.append(list[card_idx+ 1 + i])
+        
+
+      
+
+
+for line in list: print(line)
+
+      

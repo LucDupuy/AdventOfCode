@@ -1,0 +1,17 @@
+for card, count in cards_map.items():
+            #hand_type_map[hand] = "1_High Card"
+        if count == 5 or count == 4:
+           hand_type_map[hand] = "7_5 of a kind"
+        elif count == 3 and hand.count("J") == 1 or count == 4 and hand.count("J") == 0 or count == 2 and len(set(hand)) == 3:
+            hand_type_map[hand] = "6_4 of a kind"
+        elif count == 3:
+            if sum(x == 0 for x in cards_map.values()) == 10:
+                hand_type_map[hand] = "4_3 of a Kind"
+            else:
+                hand_type_map[hand] = "5_Full House"
+        elif count == 2 and len(set(hand)) == 4:
+            hand_type_map[hand] = "4_3 of a Kind"
+        
+      
+    if hand not in hand_type_map.keys():
+        print(hand)
